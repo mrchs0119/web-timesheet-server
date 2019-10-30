@@ -1,0 +1,16 @@
+[Unit]
+Description=Timesheets
+
+[Service]
+Type=simple
+User=timesheets
+Group=timesheets
+Restart=on-failure
+Environment=MIX_ENV=prod "PORT=5233"
+Environment=LANG=en_US.UTF-8
+
+WorkingDirectory=/home/timesheets/web-timesheets
+ExecStart=/bin/bash /home/timesheets/web-timesheets/start.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+upstream timesheets_app {
+    server localhost:5233;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name time1.mrchs0119.fun;
+
+    location / {
+        proxy_pass http://timesheets_app;
+    }
+
+    location /socket {
+        proxy_pass http://timesheets_app;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
