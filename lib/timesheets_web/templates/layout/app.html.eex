@@ -4,23 +4,31 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Timesheets · Phoenix Framework</title>
+    <title>Timesheets</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
     <div class="container">
       <nav class="navbar navbar-expand-sm navbar-light bg-white">
+        <div class="col-4 text-light">
+         <a class="navbar-brand">Timesheets</a>
+	</div>
         <div class="col-4">
-          <a class="navbar-brand" href="#">Lens</a>
-        </div>
-        <div class="col-8">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">All Photos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Your Photos</a>
-            </li>
+	      <li class="nav-item">
+                <%= link("Home", to: Routes.page_path(@conn, :index), class: "nav-link") %>
+              </li>
+	      <%= if @current_user do %>
+	        User: <%= @current_user.name %>
+		(<%= link("Logout", to: Routes.session_path(@conn, :delete),method: :delete) %>)
+	      <% else %>
+                <li class="nav-item">
+                  <%= link("Login", to: Routes.session_path(@conn, :new), class: "nav-link") %>
+                </li>
+                <li class="nav-item">
+                  <%= link("Signup", to: Routes.user_path(@conn, :new), class: "nav-link") %>
+                </li>
+	      <% end %>
           </ul>
         </div>
       </nav>

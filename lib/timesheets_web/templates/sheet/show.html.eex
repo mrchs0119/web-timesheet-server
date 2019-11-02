@@ -1,0 +1,49 @@
+<h1>Show Sheet</h1>
+
+<ul>
+<div class="row">
+  <li class="col-4">
+    <strong>Date:</strong>
+    <%= @sheet.date %>
+  </li>
+
+  <li class="col-4">
+    <strong>Status:</strong>
+    <%= @sheet.status %>
+  </li>
+  <li class="col-4">
+    <strong>User:</strong>
+    <%= @sheet.user.name %>
+  </li>
+</div>
+    </ul>
+    <strong>Tasks:</strong>
+    <div class="row">
+      <div class="col-4">
+        Job Code
+      </div>
+      <div class="col-4">
+        Hours
+      </div>
+      <div class="col-4">
+        Notes
+      </div>
+
+    </div>
+    <%= for task <- @tasks do %>
+    <div class="row">
+      <div class="col-4">
+        <%= task.job.job_code%>
+      </div>
+      <div class="col-4">
+        <%= task.hours%>
+      </div>
+      <div class="col-4">
+        <%= task.notes%>
+      </div>
+
+    </div>
+    <%end%>
+</table>
+
+<span><%= link "Back", to: Routes.sheet_path(@conn, :index) %></span>
