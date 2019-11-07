@@ -5,7 +5,7 @@
     <tr>
       <th class="col-6">Date</th>
       <th class="col-6">Status</th>
-
+      <th class="col-6">_________</th>
       <th class="col-6"></th>
     </tr>
   </thead>
@@ -15,7 +15,7 @@
     <tr>
       <td class="col-6"><%= sheet.date %></td>
       <td class="col-6"><%= sheet.status %></td>
-
+     
       <td class="col-6">
         <span><%= link "Show", to: Routes.sheet_path(@conn, :show, sheet) %></span>
         <span><%= link "Edit", to: Routes.sheet_path(@conn, :edit, sheet) %></span>
