@@ -6,7 +6,7 @@ defmodule Timesheets.Repo.Migrations.CreateSheets do
       add :date, :date
       add :status, :string
       add :worker_id, references(:users, on_delete: :nothing)
-      add :desc, :string
+      
 
       timestamps()
     end

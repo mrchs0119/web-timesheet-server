@@ -35,15 +35,19 @@ defmodule Timesheets.Sheets do
       ** (Ecto.NoResultsError)
 
   """
-  def get_sheet!(id), do: Repo.get!(Sheet, id)
+   def get_sheet!(id) do
+    Repo.one! from s in Sheet, 
+	where: s.id == ^id, 
 
-  def get_sheet_by_user(id) do
+        preload: [:user, :tasks]
+   end
+   
+   def get_sheet_by_user(id) do
     Repo.all from s in Sheet, 
 	where: s.worker_id == ^id, 
 
         preload: [:user, :tasks]
-  end
-
+    end
   @doc """
   Creates a sheet.
 

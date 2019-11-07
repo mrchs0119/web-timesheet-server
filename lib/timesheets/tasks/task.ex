@@ -13,11 +13,9 @@ defmodule Timesheets.Tasks.Task do
 
   @doc false
   def changeset(task, attrs) do
-    IO.inspect(attrs)
     attrs = attrs_help(attrs)
-    IO.inspect(attrs)
     task
-    |> cast(attrs, [:hours, :notes, :job_id])
+    |> cast(attrs, [:hours, :desc, :job_id])
     |> validate_required([:hours, :job_id])
     |> case do
     %{valid?: false, changes: changes} = changeset when changes == %{} ->
@@ -26,13 +24,13 @@ defmodule Timesheets.Tasks.Task do
       %{changeset | action: :ignore}
     changeset ->
       changeset
+      end
   end
-  end
-def validate_repo_existence(%{valid?: false} = changeset), do: changeset
+  def validate_repo_existence(%{valid?: false} = changeset), do: changeset
+  
   def attrs_help(attrs) do
     if (attrs["task"] != "" && attrs["task"] != nil) do 
-      IO.inspect("if")
-      attrs = Map.put(attrs, "job_id", Timesheet.Jobs.get_job_by_job_code(attrs["task"]).id)
+      attrs = Map.put(attrs, "job_id", Timesheets.Jobs.get_job_by_jobCode(attrs["task"]).id)
       attrs
     else
       attrs = Map.put(attrs, "hours", "")

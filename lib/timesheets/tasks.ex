@@ -35,12 +35,16 @@ defmodule Timesheets.Tasks do
       ** (Ecto.NoResultsError)
 
   """
-  def get_task!(id) do
+   def get_task!(id) do
       Repo.one! from p in Task,
       where: p.id == ^id,
-      preload: [:sheet]
+      preload: [:sheet, :job]
   end
-
+ def get_tasks_by_sheet_id(sheet_id) do
+      Repo.all from p in Task,
+      where: p.sheet_id == ^sheet_id,
+      preload: [:sheet, :job]
+  end
    
   @doc """
   Creates a task.

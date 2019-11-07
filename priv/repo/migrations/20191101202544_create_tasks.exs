@@ -4,7 +4,7 @@ defmodule Timesheets.Repo.Migrations.CreateTasks do
   def change do
     create table(:tasks) do
       add :hours, :integer
-      add :notes, :text
+      add :desc, :text
       add :job_id, references(:jobs, on_delete: :nothing)
       add :sheet_id, references(:sheets, on_delete: :nothing)
 

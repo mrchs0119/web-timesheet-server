@@ -33,13 +33,13 @@
     <%= for task <- @tasks do %>
     <div class="row">
       <div class="col-4">
-        <%= task.job.job_code%>
+        <%= task.job.jobCode%>
       </div>
       <div class="col-4">
         <%= task.hours%>
       </div>
       <div class="col-4">
-        <%= task.notes%>
+        <%= task.desc%>
       </div>
 
     </div>
